@@ -5,8 +5,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class boardController {
-	@GetMapping("/first")
+	
+	@GetMapping("/board/first")
 	public String Test() {
 		return "test123";
 	}
+	
 }
