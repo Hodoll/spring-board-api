@@ -19,3 +19,6 @@
  - 의존성 추가를 바로 하고 싶을 땐, 프로젝트 우클릭 => spring => Add Starters에서 추가하면 간편하게 할 수 있음
  
  - 커밋 메시지 규칙
+ 
+ - 스프링부트에는 자동으로 최종단인 BoardApplication.java에 @SpringBootApplication이 선언되어 있음. 이 안을 들어다보면
+   ComponentScan이 선언되어 있어서 따로 Component scan을 내가 직접 설정하지 않아도 @service, @controller등을 찾아 가는 것으로 보여짐. 확인필요
