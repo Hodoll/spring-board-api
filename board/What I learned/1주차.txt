@@ -33,5 +33,8 @@
  
  - POSTMAN (post는 값을 직접 넣어볼 수 없기때문에 API에서는 postman에 값을 대입하여 테스트함)
  
+ - POSTMAN 테스트할 때 Get,Put,Delete etc.. 잘 설정하고 submit해야함.. GetMapping 해놓고 Put 설정으로 Submit하니까 에러 계속남.. (Request method 'PUT' not supported)
+ 
+ 
 
  
