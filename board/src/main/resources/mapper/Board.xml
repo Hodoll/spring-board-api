@@ -21,13 +21,24 @@ SELECT
 
 <insert id="add" parameterType="com.board.spring.vo.BoardVO">
 INSERT INTO CONTENTS
-     ( 	CONTENT_ID
-	   ,CONTENT_NAME
+     ( 	
+       CONTENT_NAME
      )
 VALUES
-     ( #{CONTENT_ID}
-	  ,#{CONTENT_NAME}
+     ( 
+       #{CONTENT_NAME}
      )	
 </insert>
-    
+
+<update id="modify" parameterType="com.board.spring.vo.BoardVO">
+UPDATE CONTENTS
+   SET CONTENT_NAME = #{CONTENT_NAME}	
+ WHERE CONTENT_ID = #{CONTENT_ID}
+</update>  
+
+<delete id="remove" parameterType="com.board.spring.vo.BoardVO">
+DELETE 
+  FROM CONTENTS	
+ WHERE CONTENT_ID = #{CONTENT_ID}
+</delete>  
 </mapper>

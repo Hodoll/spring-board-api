@@ -3,6 +3,7 @@ package com.board.spring.controller;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,9 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.board.spring.service.BoardService;
 import com.board.spring.vo.BoardVO;
 
+import ch.qos.logback.classic.Logger;
+
 @RestController
 public class BoardController {
-	
+	private final Logger logger = (Logger) LoggerFactory.getLogger(getClass());
 	//# AutoWired를 지웠을때 @GetMapping("/board/select") url 입력시 에러가 났음. @Service 어노테이션이 선언 된 상태에서
 	//autowired로 의존성을 주입받지 않아서 찾을 수가 없어서 에러가 난 건지 질문필요, @SpringBootApplication에서 component Scan이 일어나고 있는데, 여기에 선언이 되었기 떄문에
 	// 바로 의존성을 주입할 수 있는거 같은데 확인필요.
@@ -31,10 +34,13 @@ public class BoardController {
     }
 	
     @PostMapping("/board/add")
-    public void addContents(@RequestParam Map<String, String> signupForm) {
+    public void addContents(@RequestParam Map<String, String> param) {
+    	//System.out.println는 좋지 않으나, logger.Debug에서 에러메시지 출력이 안됨.. 이유는 모르겠다.. 추후 질문 필요
+    	System.out.println("******************************"  + param);
     	BoardVO boardVO = new BoardVO();
-    	boardVO.setContent_id(signupForm.get("CONTENT_ID"));
-    	boardVO.setContent_name(signupForm.get("CONTENT_NAME"));
+    	boardVO.setCONTENT_ID(param.get("CONTENT_ID"));
+    	boardVO.setCONTENT_NAME(param.get("CONTENT_NAME"));
+    	System.out.println("******************************"  + param);
     	boardService.add(boardVO);
     }
 }

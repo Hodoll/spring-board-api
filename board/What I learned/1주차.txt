@@ -28,3 +28,10 @@
  - Lombok 인식이 자꾸 안돼서 Help -> Install New Software에서 재설치하니까 된다. (참조:https://sunny-jang.tistory.com/35) 
  
  - https://okky.kr/questions/826709 << 질문필요 (VO는 왜 autowired가 안되는지.)
+ 
+ - Mybatis 인자값을 받을 떄, VO의 대소문자를 가림 <= 확인필수 (1시간소요)
+ 
+ - POSTMAN (post는 값을 직접 넣어볼 수 없기때문에 API에서는 postman에 값을 대입하여 테스트함)
+ 
+
+ 

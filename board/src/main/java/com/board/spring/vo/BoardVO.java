@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BoardVO {
-	private String content_id;
-	private String content_name;
+	private String CONTENT_ID;
+	private String CONTENT_NAME;
 	
 }
