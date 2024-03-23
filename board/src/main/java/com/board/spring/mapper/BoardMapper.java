@@ -10,5 +10,11 @@ import com.board.spring.vo.BoardVO;
 public interface BoardMapper {
 	List<?> select();
 	
+	List<?> selectDetail(BoardVO boardVO);
+	
 	int add(BoardVO boardVO);
+	
+	int modify(BoardVO boardVO);
+	
+	int delete(BoardVO boardVO);
 }

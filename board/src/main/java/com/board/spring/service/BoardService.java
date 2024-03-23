@@ -17,12 +17,22 @@ public class BoardService {
 	}
     
     public List<?> selectBoard() {
-    	System.out.println("********************");
     	return boardMapper.select();
     }
     
+    public List<?> selectDetail(BoardVO boardVO) {
+    	return boardMapper.selectDetail(boardVO);
+    }
+    
     public int add(BoardVO boardVO) {
-		return boardMapper.add(boardVO);
-    	
+		return boardMapper.add(boardVO); 	
+	}
+    
+    public int modify(BoardVO boardVO) {
+		return boardMapper.modify(boardVO); 	
+	}
+    
+    public int delete(BoardVO boardVO) {
+		return boardMapper.delete(boardVO); 	
 	}
 }

@@ -5,8 +5,12 @@ import java.util.Map;
 
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,12 +31,19 @@ public class BoardController {
 	@Autowired
 	private BoardService boardService;
 	
-	
-    @GetMapping("/board/select")
+	//전체리스트 조회
+    @GetMapping("/board/list")
     public List<?> getContents(){
     	return boardService.selectBoard();
     }
-	
+	//개별리스트디테일 조회
+    @GetMapping("/board/one")
+    public List<?> getDetailContents(@RequestBody Map<String, String> param){
+    	BoardVO boardVO = new BoardVO();
+    	boardVO.setCONTENT_ID(param.get("CONTENT_ID"));
+    	return boardService.selectDetail(boardVO);
+    }
+	//저장    
     @PostMapping("/board/add")
     public void addContents(@RequestParam Map<String, String> param) {
     	//System.out.println는 좋지 않으나, logger.Debug에서 에러메시지 출력이 안됨.. 이유는 모르겠다.. 추후 질문 필요
@@ -40,7 +51,26 @@ public class BoardController {
     	BoardVO boardVO = new BoardVO();
     	boardVO.setCONTENT_ID(param.get("CONTENT_ID"));
     	boardVO.setCONTENT_NAME(param.get("CONTENT_NAME"));
-    	System.out.println("******************************"  + param);
     	boardService.add(boardVO);
+    }
+	//수정    
+    @PutMapping("/board/update/{CONTENT_ID}")
+    public void updateContents(@PathVariable("CONTENT_ID") String CONTENT_ID, @RequestBody Map<String, String> param) {
+    	System.out.println("*********" + CONTENT_ID);
+    	System.out.println("*********" + param);
+    	BoardVO boardVO = new BoardVO();
+    	boardVO.setCONTENT_ID(CONTENT_ID);
+    	boardVO.setCONTENT_NAME(param.get("CONTENT_NAME"));
+    	System.out.println("*********" + boardVO);
+    	boardService.modify(boardVO);
+    }
+    //삭제
+    @DeleteMapping("/board/delete/{CONTENT_ID}")
+    public void deleteContents(@PathVariable("CONTENT_ID") String CONTENT_ID) {
+    	System.out.println("*********" + CONTENT_ID);
+    	BoardVO boardVO = new BoardVO();
+    	boardVO.setCONTENT_ID(CONTENT_ID);
+    	System.out.println("*********" + boardVO);
+    	boardService.delete(boardVO);
     }
 }

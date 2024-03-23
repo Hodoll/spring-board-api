@@ -11,7 +11,7 @@ SELECT
   FROM CONTENTS
 </select>
 
-<select id="selectOne" resultType="hashMap">
+<select id="selectDetail" parameterType="com.board.spring.vo.BoardVO" resultType="hashMap">
 SELECT 
 	    CONTENT_ID
 	   ,CONTENT_NAME
@@ -36,7 +36,7 @@ UPDATE CONTENTS
  WHERE CONTENT_ID = #{CONTENT_ID}
 </update>  
 
-<delete id="remove" parameterType="com.board.spring.vo.BoardVO">
+<delete id="delete" parameterType="com.board.spring.vo.BoardVO">
 DELETE 
   FROM CONTENTS	
  WHERE CONTENT_ID = #{CONTENT_ID}
