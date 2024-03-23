@@ -10,5 +10,13 @@ SELECT
 	   ,CONTENT_NAME
   FROM CONTENTS
 </select>
+
+<select id="selectOne" resultType="hashMap">
+SELECT 
+	    CONTENT_ID
+	   ,CONTENT_NAME
+  FROM CONTENTS
+ WHERE CONTENT_ID = #{CONTENT_ID} 
+</select>
     
 </mapper>
