@@ -1,12 +1,16 @@
 package com.board.spring.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.board.spring.service.BoardService;
+import com.board.spring.vo.BoardVO;
 
 @RestController
 public class BoardController {
@@ -20,9 +24,17 @@ public class BoardController {
 	@Autowired
 	private BoardService boardService;
 	
+	
     @GetMapping("/board/select")
     public List<?> getContents(){
     	return boardService.selectBoard();
     }
 	
+    @PostMapping("/board/add")
+    public void addContents(@RequestParam Map<String, String> signupForm) {
+    	BoardVO boardVO = new BoardVO();
+    	boardVO.setContent_id(signupForm.get("CONTENT_ID"));
+    	boardVO.setContent_name(signupForm.get("CONTENT_NAME"));
+    	boardService.add(boardVO);
+    }
 }

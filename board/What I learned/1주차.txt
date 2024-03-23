@@ -22,3 +22,9 @@
  
  - 스프링부트에는 자동으로 최종단인 BoardApplication.java에 @SpringBootApplication이 선언되어 있음. 이 안을 들어다보면
    ComponentScan이 선언되어 있어서 따로 Component scan을 내가 직접 설정하지 않아도 @service, @controller등을 찾아 가는 것으로 보여짐. 확인필요
+   
+ - Lombok으로 인해 @getter, @setter를 따로 안만들어줘 된다 => 끝판왕인 @Data를 쓰면 저것조차 선언필요X. 근데 어노테이션은 뜨는데 왜 자동생성이 안되는지, 어느부분이 잘못됐는지 모르겠음.
+ 
+ - Lombok 인식이 자꾸 안돼서 Help -> Install New Software에서 재설치하니까 된다. (참조:https://sunny-jang.tistory.com/35) 
+ 
+ - https://okky.kr/questions/826709 << 질문필요 (VO는 왜 autowired가 안되는지.)

@@ -18,5 +18,16 @@ SELECT
   FROM CONTENTS
  WHERE CONTENT_ID = #{CONTENT_ID} 
 </select>
+
+<insert id="add" parameterType="com.board.spring.vo.BoardVO">
+INSERT INTO CONTENTS
+     ( 	CONTENT_ID
+	   ,CONTENT_NAME
+     )
+VALUES
+     ( #{CONTENT_ID}
+	  ,#{CONTENT_NAME}
+     )	
+</insert>
     
 </mapper>
