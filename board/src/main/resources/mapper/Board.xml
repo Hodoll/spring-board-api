@@ -4,11 +4,23 @@
 
 <mapper namespace="com.board.spring.mapper.BoardMapper">
 
-<select id="select" resultType="hashMap">
+<select id="select" parameterType="com.board.spring.vo.BoardVO" resultType="hashMap">
 SELECT 
-	    CONTENT_ID
-	   ,CONTENT_NAME
+	   CONTENT_ID
+	 , CONTENT_NAME
+	 , CONTENT_REG_DT
+	 , CONTENT_MOD_DT
+	 , CONTENT_STATUS
   FROM CONTENTS
+ WHERE CONTENT_STATUS = 'Y' 
+  <choose>
+	<when test='"Y".equals(ORDER_BY)'>
+ ORDER BY  CONTENT_ID DESC	
+	</when>
+	<otherwise>
+ ORDER BY  CONTENT_ID ASC		
+	</otherwise>
+  </choose>
 </select>
 
 <select id="selectDetail" parameterType="com.board.spring.vo.BoardVO" resultType="hashMap">
@@ -23,22 +35,34 @@ SELECT
 INSERT INTO CONTENTS
      ( 	
        CONTENT_NAME
+     , CONTENT_REG_DT
+     , CONTENT_STATUS
      )
 VALUES
      ( 
        #{CONTENT_NAME}
+     , NOW()
+     , 'Y'
      )	
 </insert>
 
 <update id="modify" parameterType="com.board.spring.vo.BoardVO">
 UPDATE CONTENTS
    SET CONTENT_NAME = #{CONTENT_NAME}	
+     , CONTENT_MOD_DT = NOW()
+     , CONTENT_STATUS = #{CONTENT_STATUS}
  WHERE CONTENT_ID = #{CONTENT_ID}
 </update>  
 
-<delete id="delete" parameterType="com.board.spring.vo.BoardVO">
+<update id="delete" parameterType="com.board.spring.vo.BoardVO">
+UPDATE CONTENTS
+   SET CONTENT_MOD_DT = NOW()
+     , CONTENT_STATUS = 'N'
+ WHERE CONTENT_ID = #{CONTENT_ID}
+</update> 
+<!--<delete id="delete" parameterType="com.board.spring.vo.BoardVO">
 DELETE 
   FROM CONTENTS	
  WHERE CONTENT_ID = #{CONTENT_ID}
-</delete>  
+</delete>  -->
 </mapper>

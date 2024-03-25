@@ -33,8 +33,11 @@ public class BoardController {
 	
 	//전체리스트 조회
     @GetMapping("/board/list")
-    public List<?> getContents(){
-    	return boardService.selectBoard();
+    public List<?> getContents(@RequestParam(value="ORDER_BY",  required = false, defaultValue="Y")  String ORDER_BY){
+    	BoardVO boardVO = new BoardVO();
+    	boardVO.setORDER_BY(ORDER_BY);
+    	System.out.println("boardVO = " + boardVO.getORDER_BY());
+    	return boardService.selectBoard(boardVO);
     }
 	//개별리스트디테일 조회
     @GetMapping("/board/one")
@@ -45,11 +48,10 @@ public class BoardController {
     }
 	//저장    
     @PostMapping("/board/add")
-    public void addContents(@RequestParam Map<String, String> param) {
+    public void addContents(@RequestBody Map<String, String> param) {
     	//System.out.println는 좋지 않으나, logger.Debug에서 에러메시지 출력이 안됨.. 이유는 모르겠다.. 추후 질문 필요
     	System.out.println("******************************"  + param);
     	BoardVO boardVO = new BoardVO();
-    	boardVO.setCONTENT_ID(param.get("CONTENT_ID"));
     	boardVO.setCONTENT_NAME(param.get("CONTENT_NAME"));
     	boardService.add(boardVO);
     }

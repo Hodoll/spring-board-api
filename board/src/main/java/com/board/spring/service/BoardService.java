@@ -16,8 +16,8 @@ public class BoardService {
     	this.boardMapper = BoardMapper;
 	}
     
-    public List<?> selectBoard() {
-    	return boardMapper.select();
+    public List<?> selectBoard(BoardVO boardVO) {
+    	return boardMapper.select(boardVO);
     }
     
     public List<?> selectDetail(BoardVO boardVO) {

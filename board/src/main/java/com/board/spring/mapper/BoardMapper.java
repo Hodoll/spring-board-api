@@ -8,7 +8,7 @@ import com.board.spring.vo.BoardVO;
 
 @Mapper
 public interface BoardMapper {
-	List<?> select();
+	List<?> select(BoardVO boardVO);
 	
 	List<?> selectDetail(BoardVO boardVO);
 	
