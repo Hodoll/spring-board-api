@@ -1,8 +1,10 @@
 package com.board.spring.vo;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class BoardVO {
 	private String contentId;
 	private String contentName;
