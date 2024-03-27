@@ -6,13 +6,13 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ErrorResponse {
-	private int status;
-	private String message;
-	private String code;
+	private int errorCode;
+	private String errorMessage;
+	private Object data;
 	
     public ErrorResponse(ErrorCode errorCode){
-        this.status = errorCode.getStatus();
-        this.message = errorCode.getMessage();
-        this.code = errorCode.getErrorCode();
+        this.errorCode = errorCode.getErrorCode();
+        this.errorMessage = errorCode.getErrorMessage();
+        this.data = errorCode.getData();
     }
 }
