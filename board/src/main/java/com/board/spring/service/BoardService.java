@@ -14,24 +14,25 @@ public class BoardService {
 	
     private BoardMapper boardMapper;
 
-    public BoardService(BoardMapper BoardMapper) {
-    	this.boardMapper = BoardMapper;
-	}
+	/*
+	 * public BoardService(BoardMapper BoardMapper) { this.boardMapper =
+	 * BoardMapper; }
+	 */
     
-    public List<?> selectBoard(BoardVO boardVO) {
-    	return boardMapper.select(boardVO);
+    public List<?> list(BoardVO boardVO) {
+    	return boardMapper.list(boardVO);
     }
     
-    public List<?> selectDetail(BoardVO boardVO) {
-    	return boardMapper.selectDetail(boardVO);
+    public List<?> one(BoardVO boardVO) {
+    	return boardMapper.one(boardVO);
     }
     
     public int add(BoardVO boardVO) {
 		return boardMapper.add(boardVO); 	
 	}
     
-    public int modify(BoardVO boardVO) {
-		return boardMapper.modify(boardVO); 	
+    public int update(BoardVO boardVO) {
+		return boardMapper.update(boardVO); 	
 	}
     
     public int delete(BoardVO boardVO) {
