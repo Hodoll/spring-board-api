@@ -26,7 +26,7 @@ public class BoardController {
 
 	// 전체리스트 조회
 	@GetMapping("/list")
-	public List<?> list(@RequestParam(value = "ORDER_BY", required = false, defaultValue = "Y") String orderBy) {
+	public List<Map<String, Object>> list(@RequestParam(value = "ORDER_BY", required = false, defaultValue = "Y") String orderBy) {
 		// System.out.println("boardVO = " + boardVO.getORDER_BY());
 		BoardVO boardVO = new BoardVO();
 		boardVO.setOrderBy(orderBy);
@@ -36,7 +36,7 @@ public class BoardController {
 
 	// 개별리스트디테일 조회
 	@GetMapping("/one")
-	public List<?> one(@RequestBody Map<String, String> param) {
+	public List<Map<String, Object>> one(@RequestBody Map<String, String> param) {
 		BoardVO boardVO = new BoardVO();
 		boardVO.setContentId(param.get("CONTENT_ID"));
 

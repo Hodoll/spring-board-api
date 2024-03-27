@@ -14,7 +14,7 @@ SELECT
   FROM CONTENTS
  WHERE CONTENT_STATUS = 'Y' 
   <choose>
-	<when test='"Y".equals(ORDER_BY)'>
+	<when test='"Y".equals(orderBy)'>
  ORDER BY  CONTENT_ID DESC	
 	</when>
 	<otherwise>
@@ -28,7 +28,7 @@ SELECT
 	    CONTENT_ID
 	   ,CONTENT_NAME
   FROM CONTENTS
- WHERE CONTENT_ID = #{CONTENT_ID} 
+ WHERE CONTENT_ID = #{contentId} 
 </select>
 
 <insert id="add" parameterType="com.board.spring.vo.BoardVO">
@@ -40,7 +40,7 @@ INSERT INTO CONTENTS
      )
 VALUES
      ( 
-       #{CONTENT_NAME}
+       #{contentName}
      , NOW()
      , 'Y'
      )	
@@ -48,21 +48,21 @@ VALUES
 
 <update id="update" parameterType="com.board.spring.vo.BoardVO">
 UPDATE CONTENTS
-   SET CONTENT_NAME = #{CONTENT_NAME}	
+   SET CONTENT_NAME = #{contentName}	
      , CONTENT_MOD_DT = NOW()
-     , CONTENT_STATUS = #{CONTENT_STATUS}
- WHERE CONTENT_ID = #{CONTENT_ID}
+     , CONTENT_STATUS = #{contentStatus}
+ WHERE CONTENT_ID = #{contentId}
 </update>  
 
 <update id="delete" parameterType="com.board.spring.vo.BoardVO">
 UPDATE CONTENTS
    SET CONTENT_MOD_DT = NOW()
      , CONTENT_STATUS = 'N'
- WHERE CONTENT_ID = #{CONTENT_ID}
+ WHERE CONTENT_ID = #{contentId}
 </update> 
 <!--<delete id="delete" parameterType="com.board.spring.vo.BoardVO">
 DELETE 
   FROM CONTENTS	
- WHERE CONTENT_ID = #{CONTENT_ID}
+ WHERE CONTENT_ID = #{contentId}
 </delete>  -->
 </mapper>
