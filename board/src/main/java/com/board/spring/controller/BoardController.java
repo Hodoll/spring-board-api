@@ -17,8 +17,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.board.spring.service.BoardService;
 import com.board.spring.vo.BoardVO;
 
+import lombok.extern.slf4j.Slf4j;
+
 @RestController
 @RequestMapping("/board")
+@Slf4j
 public class BoardController {
 
 	@Autowired
@@ -27,7 +30,7 @@ public class BoardController {
 	// 전체리스트 조회
 	@GetMapping("/list")
 	public List<Map<String, Object>> list(@RequestParam(value = "ORDER_BY", required = false, defaultValue = "Y") String orderBy) {
-		// System.out.println("boardVO = " + boardVO.getORDER_BY());
+		log.debug("************* test");
 		BoardVO boardVO = new BoardVO();
 		boardVO.setOrderBy(orderBy);
 
@@ -46,8 +49,6 @@ public class BoardController {
 	// 저장
 	@PostMapping("/add")
 	public void add(@RequestBody Map<String, String> param) {
-		// System.out.println는 좋지 않으나, logger.Debug에서 에러메시지 출력이 안됨.. 이유는 모르겠다.. 추후 질문 필요
-		// System.out.println("******************************" + param);
 		BoardVO boardVO = new BoardVO();
 		boardVO.setContentName(param.get("CONTENT_NAME"));
 
@@ -57,9 +58,6 @@ public class BoardController {
 	// 수정
 	@PutMapping("/update/{CONTENT_ID}")
 	public void update(@PathVariable("CONTENT_ID") String contentId, @RequestBody Map<String, String> param) {
-		// System.out.println("*********" + CONTENT_ID);
-		// System.out.println("*********" + param);
-		// System.out.println("*********" + boardVO);
 		BoardVO boardVO = new BoardVO();
 		boardVO.setContentId(contentId);
 		boardVO.setContentName(param.get("CONTENT_NAME"));
@@ -70,8 +68,6 @@ public class BoardController {
 	// 삭제
 	@DeleteMapping("/delete/{CONTENT_ID}")
 	public void delete(@PathVariable("CONTENT_ID") String contentId) {
-		// System.out.println("*********" + CONTENT_ID);
-		// System.out.println("*********" + boardVO);
 		BoardVO boardVO = new BoardVO();
 		boardVO.setContentId(contentId);
 
