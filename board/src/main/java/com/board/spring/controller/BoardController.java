@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.board.spring.service.BoardService;
@@ -57,12 +59,18 @@ public class BoardController {
 
 	// 수정
 	@PutMapping("/update/{CONTENT_ID}")
-	public void update(@PathVariable("CONTENT_ID") String contentId, @RequestBody Map<String, String> param) {
-		BoardVO boardVO = new BoardVO();
-		boardVO.setContentId(contentId);
-		boardVO.setContentName(param.get("CONTENT_NAME"));
+	public void update(@PathVariable("CONTENT_ID") String contentId, @RequestBody Map<String, String> param) throws Exception {
+		
+		if(!contentId.equals("1")) {
+			 throw new Exception("order not found");
+		}else {
+			BoardVO boardVO = new BoardVO();
+			boardVO.setContentId(contentId);
+			boardVO.setContentName(param.get("CONTENT_NAME"));
+			
+		}
 
-		boardService.update(boardVO);
+		//boardService.update(boardVO);
 	}
 
 	// 삭제
