@@ -16,11 +16,12 @@ public class BoardService {
 	
 	@Autowired
     private BoardMapper boardMapper;
-
+	
+	@Transactional(readOnly = true)
     public List<Map<String, Object>> list(BoardVO boardVO) {
     	return boardMapper.list(boardVO);
     }
-    
+	@Transactional(readOnly = true)
     public List<Map<String, Object>> one(BoardVO boardVO) {
     	return boardMapper.one(boardVO);
     }
