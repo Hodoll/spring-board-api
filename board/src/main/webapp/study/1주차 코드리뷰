@@ -1,0 +1,33 @@
+기본사항
+   ⁃   네이밍룰				=> 표준을 준수하여 변경완료 
+   ⁃   들여쓰기 패턴(예쁜 코드 만들기)		=> 기본적 들여쓰기 후 Ctrl + Shift + F 키로 자동들여쓰기 처리
+   ⁃   패키지규칙				=>What I Learned 패키지를 소문자 패키지 규칙 위반으로 삭제하였으며 README 파일로 대체하였음
+
+과제 미비된 부분
+   ⁃   요구하는 API 스펙과 다르게 개발(endpoint, parameters, return value)  => 수정완료
+   ⁃   테스트코드 미개발=> 테스트코드 작성중 . . . Ing 
+
+코드리뷰
+   ⁃   ServletInitializer.java 는 어떤 역할을 하나요?( 테스트 파일이면 어떤 테스트를 하려고 만든건가요? )  => 패키징을 Jar가 아닌 War로 배포할때 사용함. 처음 스프링 부트 실행 할 떄 JAR가 아닌 WAR로 만들었기에 자동 생성. Aws 등 클라우드에 반영 여부 미정으로 일단 유지
+   ⁃   BoardVO의 컬럼명은 왜 스네이크 케이스로 작성되어 있나요?	 => 현 '동XX 고효율 정보시스템 구축' 프로젝트에서 사용하는 방식대로 명명 규칙을 정하였으나, 표준을 다시 맞춰 변경
+   ⁃   BoardVO의 lombok 애노테이션은 각각 어떤 역할을 하나요? => @DATA를 쓴 이유는 @getter와 @setter를 선언하지 않아도, 전체를 포함하고 있어 편의상 사용하였으나 코드리뷰 후 사용하지 않는 불필요한 어노테이션까지 함께 사용되기에 다시 재변경 하였음
+   ⁃   BoardController의 getDetailContents() 리턴타입이 제네릭으로 선언된 이유는?			=> 편의상 사용했으나, 수정하였음.
+   ⁃   BoardService에서 boardMapper의 의존성을 주입할 때 생성자 방식을 사용한 이유는?		=> 필드주입방식으로 수정
+   ⁃   로그 라이브러리로 logback을 사용한 이유는?( 동작하지 않아서 sout으로 대체한 것 같은데 그렇다면 라이브러리를 정확하게 사용하지 못하고 있는 것으로 보임) => logback을 고집한 이유는 없으며, sout을 log.debug로 나오게 logback.xml 레벨 INFO => DEBUG로 수정
+   
+커밋 메세지
+   ⁃   UPDATE 커밋메세지는 어떤 상황에 사용하나요?=> 명명규칙 수정완료 
+   ⁃   커밋태그에 대괄호를 사용 X=> 수정완료
+개선사항
+   ⁃   BoardController의 API들은 모두 “/board” 하위 경로를 갖으므로 컨트롤러 레벨의 RequestMapping을 선언하면 좋음=> 개선완료
+   ⁃   System.out.println() 대신 log 라이브러리를 사용해야함(이유는 조사해보기)=> 개선완료
+   ⁃   BoardController의 메서드 중 파라미터의 명명칙 위반사항을 일괄로 맞춰야함(ex. CONTENT_ID는 contentId로 변경)=> 개선완료
+   ⁃   Service layer에서는 트랜잭션 선언이 필요(조회만 하는 경우 ReadOnly=true를 주면 속도 개선 가능)=> 개선완료
+
+질문사항
+Q. AutoWired를 지웠을때 @GetMapping("/board/select") url 입력시 에러가 났음. @Service 어노테이션이 선언 된 상태에서 autowired로 의존성을 주입받지 않아서 찾을 수가 없어서 에러가 난 건지 질문필요,
+A. @Autowired가 하는 역할은 필드에 적합한 빈을 찾아 주입. 없으면 주입할 수 없어 null인 상태로 사용.
+Q.@SpringBootApplication에서 component Scan이 일어나고 있는데, 여기에 선언이 되었기 떄문에 바로 의존성을 주입할 수 있는거 같은데 확인필요.
+A. @ComponentScan은 의존성을 주입하는 역할 X. @Componont를 읽어 빈으로 등록할 대상을 찾는 역할(말 그대로 컴포넌트 스캔)
+Q. 인터넷에서는 BoardMapper.JAVA의 패키지 경로와, Board.xml의 경로가 일치햐아 된다고 했는데 정확히 일치시켰을 떄에는 경로를 못찾아 에러가 났는데 지금과 같은 형태로 나오니 해결됐음. 근데 왜 되는지 모르겠음.
+A.  자동으로 매핑시키는 것은 DAO를 생략할 때 가능해보이는데, 어떤 상황인지 조금 더 볼 필요가 있습니다(재현 필요)
