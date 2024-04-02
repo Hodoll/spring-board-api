@@ -30,7 +30,6 @@ public class BoardController {
 	// 전체리스트 조회
 	@GetMapping("/list")
 	public List<Map<String, Object>> list(@RequestParam(value = "ORDER_BY", required = false, defaultValue = "Y") String orderBy) {
-		log.debug("************* test");
 		BoardVO boardVO = new BoardVO();
 		boardVO.setOrderBy(orderBy);
 

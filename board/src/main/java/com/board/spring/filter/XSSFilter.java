@@ -14,8 +14,11 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Component
-public class XSSFilter implements Filter {
-
+public class XSSFilter {
+	
+}
+//public class XSSFilter implements Filter {
+/*
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
 		// TODO Auto-generated method stub
@@ -35,3 +38,4 @@ public class XSSFilter implements Filter {
 		log.debug("시스템종료");
 	}
 }
+*/
