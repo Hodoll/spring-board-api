@@ -10,4 +10,9 @@
    
  - @Configuration 태그가 존재하는 곳에 WebMvcConfigurer를 추가하라고 하여 찾아봤지만  Configuration이 추가된 곳은 없었음.
    아마도 @@SpringBootApplication 어노테이션을 타고 가다보면 @@SpringBootConfiguration이 나오고 그안에 @onfiguration이 선언되어 있음.
-   즉, Main에 선언을 하는게 맞아보여 implements WebMvcConfigurer을 상속받아 사용 테스트
+   즉, Main에 선언을 하는게 맞아보여 implements WebMvcConfigurer을 상속받아 사용 테스트 - 실패하였으며, XSS FILTER가 잘 적용되지 않음..
+   
+ - XSS FILTER 및 자바관련 질문필요
+ 
+ - 인터셉터는 HandlerInterceptor를 상속받아서 사용함. 또한 Configuration 어노테이션을 사용하여 , WebMvcConfigurer를 상속받은 WebMvcConfig 클래스를 정의하여 사용
+    
