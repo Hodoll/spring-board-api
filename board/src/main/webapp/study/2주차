@@ -15,4 +15,9 @@
  - XSS FILTER 및 자바관련 질문필요
  
  - 인터셉터는 HandlerInterceptor를 상속받아서 사용함. 또한 Configuration 어노테이션을 사용하여 , WebMvcConfigurer를 상속받은 WebMvcConfig 클래스를 정의하여 사용
- - Git 커밋 잔디심기 누락이슈 수정중 ..
+ - Git 커밋 잔디심기 누락 원인 해결
+   commit Message의 Author와 Commiter의 이름과 실제 user.Email,Name의 이름이 달라서 누락되는 문제 = > 이를 해결하기 위해 
+   gitHub Desktop 설치 => 환경변수 등록 => config --global user.email 메일@주소 및 이름 설정 
+   => windows > preference > git > configuration user 이름 및 name 설정 
+ - 환경변수 설정이유 > 환경변수를 설정하지 않으면 직접 해당 경로까지 들어가야만 접근이 가능함. 그러한 접근을 간편하게 하기 위해서 환경변수 사용 ex) 바로가기 만들기
+ 
