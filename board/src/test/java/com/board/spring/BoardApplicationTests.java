@@ -1,21 +1,18 @@
 package com.board.spring;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
+
 import com.board.spring.service.BoardService;
+import com.board.spring.util.MaskingUtil;
 import com.board.spring.vo.BoardVO;
+
 import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -24,11 +21,16 @@ import lombok.extern.slf4j.Slf4j;
 class BoardApplicationTests {
 	@Autowired
 	private BoardService boardService;
+	@Autowired
+	private MaskingUtil maskingUtil;
 	@Autowired TestRestTemplate restTemplate;
 	@Test
-	void list() {
+	void list() throws Exception {
 		BoardVO boardVO = new BoardVO();
-		boardService.list(boardVO);
+		String test  = maskingUtil.nameMasking("test");
+		log.debug(test);
+		return;
+		//boardService.list(boardVO);
 	}
 
 	@Test

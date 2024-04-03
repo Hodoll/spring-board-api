@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.board.spring.service.BoardService;
+import com.board.spring.util.MaskingUtil;
 import com.board.spring.vo.BoardVO;
 
 import lombok.extern.slf4j.Slf4j;
@@ -26,13 +27,15 @@ public class BoardController {
 	
 	@Autowired
 	private BoardService boardService;
-
+	@Autowired
+	private MaskingUtil maskingUtil;
 	// 전체리스트 조회
 	@GetMapping("/list")
-	public List<Map<String, Object>> list(@RequestParam(value = "ORDER_BY", required = false, defaultValue = "Y") String orderBy) {
+	public List<Map<String, Object>> list(@RequestParam(value = "ORDER_BY", required = false, defaultValue = "Y") String orderBy) throws Exception {
 		BoardVO boardVO = new BoardVO();
 		boardVO.setOrderBy(orderBy);
-
+		maskingUtil.nameMasking("test");
+		
 		return boardService.list(boardVO);
 	}
 
