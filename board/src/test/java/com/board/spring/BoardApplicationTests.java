@@ -27,8 +27,8 @@ class BoardApplicationTests {
 	@Test
 	void list() throws Exception {
 		BoardVO boardVO = new BoardVO();
-		String test  = maskingUtil.nameMasking("test");
-		log.debug(test);
+		String test  = maskingUtil.nameMasking("가나다라마바사");
+		log.debug("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa " + test);
 		return;
 		//boardService.list(boardVO);
 	}
