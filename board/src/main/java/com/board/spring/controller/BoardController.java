@@ -27,14 +27,14 @@ public class BoardController {
 	
 	@Autowired
 	private BoardService boardService;
-	@Autowired
-	private MaskingUtil maskingUtil;
+
 	// 전체리스트 조회
 	@GetMapping("/list")
 	public List<Map<String, Object>> list(@RequestParam(value = "ORDER_BY", required = false, defaultValue = "Y") String orderBy) throws Exception {
 		BoardVO boardVO = new BoardVO();
 		boardVO.setOrderBy(orderBy);
-		maskingUtil.nameMasking("test");
+		
+		MaskingUtil.nameMasking("Hello world");
 		
 		return boardService.list(boardVO);
 	}
@@ -59,18 +59,17 @@ public class BoardController {
 
 	// 수정
 	@PutMapping("/update/{CONTENT_ID}")
-	public void update(@PathVariable("CONTENT_ID") String contentId, @RequestBody Map<String, String> param) throws Exception {
+	public void update(@PathVariable("CONTENT_ID") String contentId, @RequestBody Map<String, String> param) {
 		
 		if(!contentId.equals("1")) {
-			 throw new Exception("order not found");
-		}else {
-			BoardVO boardVO = new BoardVO();
-			boardVO.setContentId(contentId);
-			boardVO.setContentName(param.get("CONTENT_NAME"));
-			
+			 throw new RuntimeException("order not found");
 		}
+		
+		BoardVO boardVO = new BoardVO();
+		boardVO.setContentId(contentId);
+		boardVO.setContentName(param.get("CONTENT_NAME"));
 
-		//boardService.update(boardVO);
+		boardService.update(boardVO);
 	}
 
 	// 삭제
