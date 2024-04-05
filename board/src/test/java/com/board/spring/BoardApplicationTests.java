@@ -6,7 +6,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.http.HttpHeaders;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.board.spring.service.BoardService;
@@ -21,16 +20,12 @@ import lombok.extern.slf4j.Slf4j;
 class BoardApplicationTests {
 	@Autowired
 	private BoardService boardService;
-	@Autowired
-	private MaskingUtil maskingUtil;
 	@Autowired TestRestTemplate restTemplate;
+	
 	@Test
 	void list() throws Exception {
 		BoardVO boardVO = new BoardVO();
-		String test  = maskingUtil.nameMasking("가나다라마바사");
-		log.debug("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa " + test);
-		return;
-		//boardService.list(boardVO);
+		boardService.list(boardVO);
 	}
 
 	@Test
@@ -62,34 +57,9 @@ class BoardApplicationTests {
 	}
 	
 	@Test
-    public void 학교_저장() throws Exception {
-
-        //given
-        //SchoolSaveDto saveDto = new SchoolSaveDto("서울c 학교", "<a ref='www.naver.com'> </a>", "1233");
-        BoardVO boardVO = new BoardVO();
-        boardVO.setContentId("1");
-        boardVO.setContentName("<a ref='www.naver.com'> </a>");
-        
-        HttpHeaders headers = new HttpHeaders();
-       // headers.setContentType(MediaType.APPLICATION_JSON);
-       // headers.set("Authorization", accessToken);
-
-       // HttpEntity<SchoolSaveDto> entity = new HttpEntity<>(saveDto, headers);
-
-        //when
-//        ResponseEntity<Long> response = restTemplate
-//                .exchange(
-//                "/api/v1/schools/insert",
-//                HttpMethod.POST,
-//                entity,
-//                Long.class);
-
-        boardService.list(boardVO);
-
-        //then
-      //  Assertions.assertThat(response.getStatusCode()).isEqualTo(HttpStatus.CREATED);
-//        Assertions.assertThat(school.getSchoolAddress()).isNotEqualTo("<a ref='www.naver.com'> </a>");
-//        Assertions.assertThat(school.getSchoolAddress()).isEqualTo("&lt;a ref='www.naver.com'&gt; &lt;/a&gt;");
-
-    }
+	void listMaskingTest() throws Exception {
+		BoardVO boardVO = new BoardVO();
+		MaskingUtil.nameMasking(boardService.list(boardVO));
+	}	
+	
 }
