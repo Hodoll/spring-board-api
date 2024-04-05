@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 import org.springframework.stereotype.Service;
 
-@Service
+
 public class MaskingUtil {
 	// 이름 가운데 글자 마스킹
 	public static String nameMasking(String name) throws Exception {
