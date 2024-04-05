@@ -1,0 +1,17 @@
+
+코드리뷰
+   ⁃MaskingUtil 클래스가 @Service 사용한 이유는? => 스프링 빈 생성에 대하여 제대로 이해하지 못하여 사용하였음. 
+   ⁃MaskingUtil에서 한글만 받는 이유는? 더 코드를 간결하게 만들 순 없을까?
+   ⁃Singleton pattern은 어떤것인지? => 객체를 한 번만 할당하여 메모리 낭비를 줄이는 것. Bean은 모두 싱글톤 디자인 패턴
+   ⁃유틸클래스나 스프링 빈이나 모두 단일 객체를 사용하는데 왜 유틸 클래스는 빈으로 등록하지 않는지? => Static으로 선언되어있어 빈으로 등록할 필요X
+   ⁃BoardController.one()은 테스트코드? 테스트를 목적으로 데이터를 세팅했다면 테스트 케이스로 별도로 만들어서 테스트 코드를 통해 확인
+   ⁃왜 입력받는 파라미터마다 별도의 BoardVO 객체를 생성해서 처리하는지? => VO가 contentId와 같이 카멜케이스를 사용하기 때문에 형식을 맞추기 위하여 객체 생성처리
+   ⁃BoardController.update()의 코드를 깔끔하게 만드는 방법 - else를 지양한다 => throws Exception UnChecked RuntimesException 사용
+   ⁃여전히 ServletInitializer 클래스는 남아있는데 이유는? => 전통적인 배포 방식인 war 파일로 배포를 진행해야 하는 경우가 있을 수 있다. 혹시모를 AWS에 올릴떄를 대비하여 일단 keep 
+   ⁃테스트코드의 목적에 따라 테스트 클래스를 분리(컨트롤러 테스트는 *ControllerTest, 서비스는 *ServiceTest
+   ⁃given, when, then이 무엇인지? (BDD에 대한 이해 필요)
+   ⁃불필요한 index.html 페이지 여전히 존재 => 삭제완료
+   ⁃예외와 에러의 차이점
+   ⁃예외의 종류 설명
+   ⁃Checked exception과 Unchecked exception의 차이는?
+   ⁃직접 개발해본 Exception이 있다면 어떻게 만들었는지?
