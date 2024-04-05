@@ -30,13 +30,10 @@ public class BoardController {
 
 	// 전체리스트 조회
 	@GetMapping("/list")
-	public List<Map<String, Object>> list(@RequestParam(value = "ORDER_BY", required = false, defaultValue = "Y") String orderBy) throws Exception {
+	public List<Map<String, Object>> list(@RequestParam(value = "ORDER_BY", required = false, defaultValue = "Y") String orderBy) {
 		BoardVO boardVO = new BoardVO();
 		boardVO.setOrderBy(orderBy);
-		
-		MaskingUtil.nameMasking("Hello world");
-		
-		return boardService.list(boardVO);
+		return MaskingUtil.nameMasking(boardService.list(boardVO));
 	}
 
 	// 개별리스트디테일 조회

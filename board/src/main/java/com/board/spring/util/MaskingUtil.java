@@ -12,7 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class MaskingUtil {
 	// 이름 가운데 글자 마스킹
-	public static List<Map<String,Object>> nameMasking(List<Map<String, Object>> list) throws Exception {
+	public static List<Map<String,Object>> nameMasking(List<Map<String, Object>> list) {
 		String name, regex= "";
 		List<Map<String, Object>> ListArr = new ArrayList<>();
 		for (int i = 0; i < list.size(); i++) {
