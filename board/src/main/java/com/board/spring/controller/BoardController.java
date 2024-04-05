@@ -33,17 +33,18 @@ public class BoardController {
 	public List<Map<String, Object>> list(@RequestParam(value = "ORDER_BY", required = false, defaultValue = "Y") String orderBy) {
 		BoardVO boardVO = new BoardVO();
 		boardVO.setOrderBy(orderBy);
+		
 		return MaskingUtil.nameMasking(boardService.list(boardVO));
 	}
 
 	// 개별리스트디테일 조회
-	@GetMapping("/one")
-	public String one(@RequestBody Map<String, String> param) {
-		BoardVO boardVO = new BoardVO();
-		boardVO.setContentId("1");
-        boardVO.setContentName("<javascript>alert('123')</javascript>");
-		return "" + boardVO.getContentName();
-	}
+    @GetMapping("/one")
+    public List<?> getDetailContents(@RequestBody Map<String, String> param){
+    	BoardVO boardVO = new BoardVO();
+    	boardVO.setContentId(param.get("CONTENT_ID"));
+    	
+    	return boardService.one(boardVO);
+    }
 
 	// 저장
 	@PostMapping("/add")
@@ -57,11 +58,7 @@ public class BoardController {
 	// 수정
 	@PutMapping("/update/{CONTENT_ID}")
 	public void update(@PathVariable("CONTENT_ID") String contentId, @RequestBody Map<String, String> param) {
-		
-		if(!contentId.equals("1")) {
-			 throw new RuntimeException("order not found");
-		}
-		
+
 		BoardVO boardVO = new BoardVO();
 		boardVO.setContentId(contentId);
 		boardVO.setContentName(param.get("CONTENT_NAME"));
