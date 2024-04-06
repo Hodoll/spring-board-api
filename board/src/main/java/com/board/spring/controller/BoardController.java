@@ -19,6 +19,7 @@ import com.board.spring.service.MailService;
 import com.board.spring.util.MaskingUtil;
 import com.board.spring.vo.BoardVO;
 
+import jakarta.mail.MessagingException;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
@@ -28,15 +29,13 @@ public class BoardController {
 	
 	@Autowired
 	private BoardService boardService;
-	@Autowired
-	private MailService mailService;
 	
 	// 전체리스트 조회
 	@GetMapping("/list")
-	public List<Map<String, Object>> list(@RequestParam(value = "ORDER_BY", required = false, defaultValue = "Y") String orderBy) throws Exception {
+	public List<Map<String, Object>> list(@RequestParam(value = "ORDER_BY", required = false, defaultValue = "Y") String orderBy) throws MessagingException  {
 		BoardVO boardVO = new BoardVO();
 		boardVO.setOrderBy(orderBy);
-		mailService.run(null);
+	
 		return MaskingUtil.nameMasking(boardService.list(boardVO));
 	}
 
@@ -62,7 +61,6 @@ public class BoardController {
 	// 수정
 	@PutMapping("/update/{CONTENT_ID}")
 	public void update(@PathVariable("CONTENT_ID") String contentId, @RequestBody Map<String, String> param) {
-
 		BoardVO boardVO = new BoardVO();
 		boardVO.setContentId(contentId);
 		boardVO.setContentName(param.get("CONTENT_NAME"));
@@ -72,7 +70,7 @@ public class BoardController {
 
 	// 삭제
 	@DeleteMapping("/delete/{CONTENT_ID}")
-	public void delete(@PathVariable("CONTENT_ID") String contentId) {
+	public void delete(@PathVariable("CONTENT_ID") String contentId) throws MessagingException {
 		BoardVO boardVO = new BoardVO();
 		boardVO.setContentId(contentId);
 
