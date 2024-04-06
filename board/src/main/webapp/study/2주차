@@ -55,3 +55,10 @@
  - 애초에 git 접속 시 아이디와 Pw에 이메일, 토큰 주소를 넣으면 굳이 change Credential을 설정 할 필요가 없다.
  
  - service와 serviceImpl을 하나로 합치려면? 어떻게 해야하는지
+ 
+ - 메일발송 기능구현 =>
+   메일발송을 하기 위해서는 일단, 스프링부트에서 제공하는 라이브러리 의존성을 추가해야 했다.
+   그 후 메일을 송수신 할때 쓰는 전송규약인 POP3/SMTP를 설정해주어야 한다.
+   일단은 네이버로 구현을 했으며, 구글이나 다른 메일을 쓰기 위해선 메일 포트 번호를 다르게 설정해주어야 한다(네이버의 경우 465)
+   Got bad greeting from SMTP host라는 에러가 발생했고, 아래의 링크에서 SSL 정보를 TRUE로 설정하여 해결했다. 
+   https://stackoverflow.com/questions/63236701/got-bad-greeting-from-smtp-host-smtp-yandex-ru-port-465-response-eof-wit
