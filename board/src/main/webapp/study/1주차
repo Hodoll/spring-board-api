@@ -3,7 +3,7 @@
    =>2021년 이후로 아이디 & 패스워드 => 아이디 & 토큰으로 변경되었음. 비밀번호 대신 토큰을 발급해야 함.
    =>토큰발급 시 아래와 순서가 맞지 않으면 무한 로그인창이 뜸 
     
- - GIT 계정 및 연동 
+ - GIT 계정 및 연동123
    => repository생성 => settings => developer settings => 토큰발급(repo check) => clone a repository 정보입력
    => remote(origin) 우클릭 Change Credential에 아이디(email), 패스워드(token)입력 후 save => 그 후 share프로젝트로 연결하면 정상처리 됨 (문제해결 4시간소요)
  - Java 클래스를 정상적으로 생성했음에도 불구하고, Java Class notFound 에러발생 
