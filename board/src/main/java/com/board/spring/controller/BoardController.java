@@ -39,11 +39,12 @@ public class BoardController {
 
 	// 개별리스트디테일 조회
     @GetMapping("/one")
-    public List<?> getDetailContents(@RequestBody Map<String, String> param){
+    public List<Map<String, Object>> getDetailContents(@RequestBody Map<String, String> param){
     	BoardVO boardVO = new BoardVO();
     	boardVO.setContentId(param.get("CONTENT_ID"));
     	
-    	return boardService.one(boardVO);
+    	return MaskingUtil.nameMasking(boardService.one(boardVO));
+    	
     }
 
 	// 저장
