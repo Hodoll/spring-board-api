@@ -12,7 +12,7 @@
    아마도 @@SpringBootApplication 어노테이션을 타고 가다보면 @@SpringBootConfiguration이 나오고 그안에 @onfiguration이 선언되어 있음.
    즉, Main에 선언을 하는게 맞아보여 implements WebMvcConfigurer을 상속받아 사용 테스트 - 실패하였으며, XSS FILTER가 잘 적용되지 않음..
    
- - XSS FILTER 및 자바관련 질문필요
+ - XSS FILTER 및 자바관련 질문필요 
  
  - 인터셉터는 HandlerInterceptor를 상속받아서 사용함. 또한 Configuration 어노테이션을 사용하여 , WebMvcConfigurer를 상속받은 WebMvcConfig 클래스를 정의하여 사용
  - Git 커밋 잔디심기 누락 원인 해결
