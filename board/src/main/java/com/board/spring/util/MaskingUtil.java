@@ -32,7 +32,7 @@ public class MaskingUtil {
 			for (int j = 0; j < middleMask.length(); j++) {
 				dot += "*";
 			}
-			//FIXME **********
+			//FIXME **********위의 로직을 함수로 빼는 게 좋을지 질문. 다만 이미 nameMasking 자체가 함수라 또 함수로 뺴는 것이 좋은지는 모르겠음.
 			//3글자부터는 홍*동 
 			if (length > 2) {
 				name = name.substring(0, 1) + middleMask.replace(middleMask, dot)
