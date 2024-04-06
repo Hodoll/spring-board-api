@@ -6,31 +6,30 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
+import com.board.spring.vo.MailVO;
+
+import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
 
-@Component
+@Service
 @RequiredArgsConstructor
-public class MailService implements ApplicationRunner{
+public  class MailService implements ApplicationRunner{
     private final JavaMailSender mailSender;
 
     @Value("${spring.mail.username}")
     private String from;
-
-    @Override
-    public void run(ApplicationArguments args) throws Exception {
-
+    
+    public void run(ApplicationArguments args) throws MessagingException {
         MimeMessage m = mailSender.createMimeMessage();
         MimeMessageHelper h = new MimeMessageHelper(m,"UTF-8");
-        //h.setFrom(from ("ghwls5490@naver.com"));
-        h.setFrom("ghwls5490@naver.com");
-        h.setTo("ghwls5490@naver.com");
-        h.setSubject("상과장님 확인용 테스트메일");
-        h.setText("과장님 확인용 테스트메일");
+        h.setFrom(from);
+        h.setTo(from);
+        h.setSubject("[게시글 삭제]" + MailVO.contentName + "이(가) 삭제되었습니다.");        	
+    	h.setText(MailVO.contentDelDt + "에 해당 게시글이 삭제되었습니다.");
+
         mailSender.send(m);
     }
-
-
 }

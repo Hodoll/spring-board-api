@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.DefaultApplicationArguments;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +20,7 @@ import com.board.spring.service.BoardService;
 import com.board.spring.service.MailService;
 import com.board.spring.util.MaskingUtil;
 import com.board.spring.vo.BoardVO;
+import com.board.spring.vo.MailVO;
 
 import jakarta.mail.MessagingException;
 import lombok.extern.slf4j.Slf4j;
@@ -29,13 +32,12 @@ public class BoardController {
 	
 	@Autowired
 	private BoardService boardService;
-	
 	// 전체리스트 조회
 	@GetMapping("/list")
 	public List<Map<String, Object>> list(@RequestParam(value = "ORDER_BY", required = false, defaultValue = "Y") String orderBy) throws MessagingException  {
 		BoardVO boardVO = new BoardVO();
 		boardVO.setOrderBy(orderBy);
-	
+		
 		return MaskingUtil.nameMasking(boardService.list(boardVO));
 	}
 

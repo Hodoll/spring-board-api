@@ -1,13 +1,8 @@
 package com.board.spring.vo;
 
-import lombok.Getter;
-import lombok.Setter;
-
-@Getter
-@Setter
 public class  MailVO {
-	private String contentTo;
-	private String contentFrom;
-	private String contentName;
-	private String contentDelDt;
+	 public static String contentTo;
+	 public static String contentFrom;
+	 public static String contentName;
+	 public static String contentDelDt;
 }
