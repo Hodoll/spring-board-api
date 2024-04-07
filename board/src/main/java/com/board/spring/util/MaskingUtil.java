@@ -50,12 +50,4 @@ public class MaskingUtil {
 		log.debug("list == >>>> " + ListArr);
 		return ListArr;
 	}
-	
-	public static String getCurrentDateTime() {
-		Date today = new Date();
-		Locale currentLocale = new Locale("KOREAN", "KOREA");
-		String pattern = "yyyy-MM-dd HH:mm:ss";
-		SimpleDateFormat formatter = new SimpleDateFormat(pattern,currentLocale);
-		return formatter.format(today);
-	}
 }
