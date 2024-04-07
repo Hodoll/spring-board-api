@@ -14,4 +14,8 @@
    ⁃예외와 에러의 차이점
    ⁃예외의 종류 설명
    ⁃Checked exception과 Unchecked exception의 차이는?
-   ⁃직접 개발해본 Exception이 있다면 어떻게 만들었는지?
+   ⁃MailService Impl 제거 하여 단순화 필요
+   ⁃MailVO 삭제
+   ⁃마스킹유틸 로직수정
+   ⁃시간공통 따로 클래스화 필요
+   ⁃List<VO> 변경
