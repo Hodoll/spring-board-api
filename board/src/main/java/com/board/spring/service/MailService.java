@@ -6,6 +6,7 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import com.board.spring.vo.MailVO;
@@ -22,14 +23,15 @@ public  class MailService implements ApplicationRunner{
     @Value("${spring.mail.username}")
     private String from;
     
+    @Async
     public void run(ApplicationArguments args) throws MessagingException {
-        MimeMessage m = mailSender.createMimeMessage();
-        MimeMessageHelper h = new MimeMessageHelper(m,"UTF-8");
-        h.setFrom(from);
-        h.setTo(from);
-        h.setSubject("[게시글 삭제]" + MailVO.contentName + "이(가) 삭제되었습니다.");        	
-    	h.setText(MailVO.contentDelDt + "에 해당 게시글이 삭제되었습니다.");
+        MimeMessage message = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message,"UTF-8");
+        helper.setFrom(from);
+        helper.setTo(from);
+        helper.setSubject("[게시글 삭제]" + MailVO.contentName + "이(가) 삭제되었습니다.");        	
+    	helper.setText(MailVO.contentDelDt + "에 해당 게시글이 삭제되었습니다.");
 
-        mailSender.send(m);
+        mailSender.send(message);
     }
 }
