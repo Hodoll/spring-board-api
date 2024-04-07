@@ -23,7 +23,7 @@ SELECT
   </choose>
 </select>
 
-<select id="one" parameterType="com.board.spring.vo.BoardVO" resultType="hashMap">
+<select id="one" parameterType="com.board.spring.vo.BoardVO" resultType="com.board.spring.vo.BoardVO">
 SELECT 
 	    CONTENT_ID
 	   ,CONTENT_NAME
@@ -54,7 +54,7 @@ UPDATE CONTENTS
  WHERE CONTENT_ID = #{contentId}
 </update>  
 
-<update id="delete" parameterType="com.board.spring.vo.BoardVO">
+<update id="delete" parameterType="com.board.spring.vo.BoardVO" >
 UPDATE CONTENTS
    SET CONTENT_MOD_DT = NOW()
      , CONTENT_STATUS = 'N'

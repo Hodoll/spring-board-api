@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.board.spring.mapper.BoardMapper;
+import com.board.spring.util.DateUtil;
 import com.board.spring.util.MaskingUtil;
 import com.board.spring.vo.BoardVO;
 import com.board.spring.vo.MailVO;
@@ -25,6 +26,12 @@ public class BoardService {
 	
 	@Transactional(readOnly = true)
     public List<Map<String, Object>> list(BoardVO boardVO) throws MessagingException {
+		
+//		for (String key : map.keySet()) {
+//		    String value = map.get(key);
+//		    map.put("CONTENTS_NAME", MaskingUtil.nameMasking(value));
+//		}
+		
     	return boardMapper.list(boardVO);
     }
 	@Transactional(readOnly = true)
@@ -41,11 +48,8 @@ public class BoardService {
 	}
     
     public int delete(BoardVO boardVO) throws MessagingException {
-    	List<Map<String, Object>> list = boardMapper.one(boardVO);
-    	MailVO.contentName = (String) list.get(0).get("CONTENT_NAME");
-    	MailVO.contentDelDt = MaskingUtil.getCurrentDateTime();
-    	
-    	mailService.run(null);
+    	boardMapper.one(boardVO);
+    	mailService.run(boardVO);
 		return boardMapper.delete(boardVO); 	
 	}
 }
