@@ -2,8 +2,6 @@ package com.board.spring.service;
 
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.ApplicationArguments;
-import org.springframework.boot.ApplicationRunner;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
@@ -11,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import com.board.spring.util.DateUtil;
 import com.board.spring.vo.BoardVO;
-import com.board.spring.vo.MailVO;
 
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;

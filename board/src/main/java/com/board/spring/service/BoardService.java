@@ -8,12 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.board.spring.mapper.BoardMapper;
-import com.board.spring.util.DateUtil;
 import com.board.spring.util.MaskingUtil;
 import com.board.spring.vo.BoardVO;
-import com.board.spring.vo.MailVO;
-
-import jakarta.mail.MessagingException;
 
 @Transactional
 @Service
