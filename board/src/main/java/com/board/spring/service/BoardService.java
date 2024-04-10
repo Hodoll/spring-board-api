@@ -25,7 +25,7 @@ public class BoardService {
 	private MailService mailService;	
 	
 	@Transactional(readOnly = true)
-    public List<Map<String, Object>> list(BoardVO boardVO) throws MessagingException {
+    public List<Map<String, Object>> list(BoardVO boardVO) {
 		
 //		for (String key : map.keySet()) {
 //		    String value = map.get(key);
@@ -47,7 +47,7 @@ public class BoardService {
 		return boardMapper.update(boardVO); 	
 	}
     
-    public int delete(BoardVO boardVO) throws MessagingException {
+    public int delete(BoardVO boardVO) {
     	boardMapper.one(boardVO);
     	mailService.run(boardVO);
 		return boardMapper.delete(boardVO); 	

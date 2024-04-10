@@ -16,7 +16,9 @@ import com.board.spring.vo.MailVO;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public  class MailService {
@@ -26,13 +28,20 @@ public  class MailService {
     private String from;
     
     @Async
-    public void run(BoardVO boardVO) throws MessagingException {
+    public void run(BoardVO boardVO) {
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message,"UTF-8");
-        helper.setFrom(from);
-        helper.setTo(from);
-        helper.setSubject("[게시글 삭제]" + boardVO.getContentName() + "이(가) 삭제되었습니다.");        	
-    	helper.setText(DateUtil.getCurrentDateTime() + "에 해당 게시글이 삭제되었습니다.");
+        
+        try {
+        	helper.setFrom(from);
+        	helper.setTo(from);
+        	helper.setSubject("[게시글 삭제]" + boardVO.getContentName() + "이(가) 삭제되었습니다.");        	
+        	helper.setText(DateUtil.getCurrentDateTime() + "에 해당 게시글이 삭제되었습니다.");
+			
+		} catch (MessagingException e) {
+			//TODO : Error logging
+			log.debug(from);
+		}
 
         mailSender.send(message);
     }

@@ -34,7 +34,7 @@ public class BoardController {
 	private BoardService boardService;
 	// 전체리스트 조회
 	@GetMapping("/list")
-	public List<Map<String, Object>> list(@RequestBody BoardVO boardVO) throws MessagingException  {
+	public List<Map<String, Object>> list(@RequestBody BoardVO boardVO) {
 		return boardService.list(boardVO);
 	}
 
@@ -53,16 +53,13 @@ public class BoardController {
 
 	// 수정
 	@PutMapping("/update/{CONTENT_ID}")
-	public void update(@PathVariable("CONTENT_ID") String contentId, @RequestBody BoardVO boardVO) {
+	public void update(@RequestBody BoardVO boardVO) {
 		boardService.update(boardVO);
 	}
 
 	// 삭제
 	@DeleteMapping("/delete/{CONTENT_ID}")
-	public void delete(@PathVariable("CONTENT_ID") String contentId) throws MessagingException {
-		BoardVO boardVO = new BoardVO();
-		boardVO.setContentId(contentId);
-
+	public void delete(@RequestBody BoardVO boardVO) {
 		boardService.delete(boardVO);
 	}
 }
