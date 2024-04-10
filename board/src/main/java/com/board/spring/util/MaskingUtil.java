@@ -27,7 +27,6 @@ public class MaskingUtil {
 			} else { // 이름이 외자일때 홍*
 				maskingContents = maskingContents.substring(0, 1) + middleMask.replace(middleMask, dot);
 			}
-			//맵형식으로 담아서 리스트ADD처리 하여 리턴
 		return maskingContents;
 	}
 }
