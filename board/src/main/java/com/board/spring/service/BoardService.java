@@ -25,31 +25,31 @@ public class BoardService {
 	private MailService mailService;	
 	
 	@Transactional(readOnly = true)
-    public List<Map<String, Object>> list(BoardVO boardVO) {
-		
-//		for (String key : map.keySet()) {
-//		    String value = map.get(key);
-//		    map.put("CONTENTS_NAME", MaskingUtil.nameMasking(value));
-//		}
-		
-    	return boardMapper.list(boardVO);
-    }
+	public List<Map<String, Object>> list(BoardVO boardVO) {
+		List<Map<String, Object>> List = boardMapper.list(boardVO);
+		for (Map<String, Object> row : List) {
+			String maskingContents = (String) row.get("CONTENTS_NAME");
+			row.put("CONTENTS_NAME", MaskingUtil.nameMasking(maskingContents));
+		}
+		return List;
+	}
+	
 	@Transactional(readOnly = true)
-    public List<Map<String, Object>> one(BoardVO boardVO) {
-    	return boardMapper.one(boardVO);
-    }
-    
-    public int add(BoardVO boardVO) {
-		return boardMapper.add(boardVO); 	
+	public List<Map<String, Object>> one(BoardVO boardVO) {
+		return boardMapper.one(boardVO);
 	}
-    
-    public int update(BoardVO boardVO) {
-		return boardMapper.update(boardVO); 	
+
+	public int add(BoardVO boardVO) {
+		return boardMapper.add(boardVO);
 	}
-    
-    public int delete(BoardVO boardVO) {
-    	boardMapper.one(boardVO);
-    	mailService.run(boardVO);
-		return boardMapper.delete(boardVO); 	
+
+	public int update(BoardVO boardVO) {
+		return boardMapper.update(boardVO);
+	}
+
+	public int delete(BoardVO boardVO) {
+		boardMapper.one(boardVO);
+		mailService.run(boardVO);
+		return boardMapper.delete(boardVO);
 	}
 }
