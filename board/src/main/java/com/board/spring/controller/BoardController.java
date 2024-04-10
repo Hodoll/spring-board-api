@@ -34,39 +34,26 @@ public class BoardController {
 	private BoardService boardService;
 	// 전체리스트 조회
 	@GetMapping("/list")
-	public List<Map<String, Object>> list(@RequestParam(value = "ORDER_BY", required = false, defaultValue = "Y") String orderBy) throws MessagingException  {
-		BoardVO boardVO = new BoardVO();
-		boardVO.setOrderBy(orderBy);
-		
-		return MaskingUtil.nameMasking(boardService.list(boardVO));
+	public List<Map<String, Object>> list(@RequestBody BoardVO boardVO) throws MessagingException  {
+		return boardService.list(boardVO);
 	}
 
 	// 개별리스트디테일 조회
     @GetMapping("/one")
-    public List<Map<String, Object>> getDetailContents(@RequestBody Map<String, String> param){
-    	BoardVO boardVO = new BoardVO();
-    	boardVO.setContentId(param.get("CONTENT_ID"));
-    	
-    	return MaskingUtil.nameMasking(boardService.one(boardVO));
+    public List<Map<String, Object>> getDetailContents(@RequestBody BoardVO boardVO){
+    	return boardService.one(boardVO);
     	
     }
 
 	// 저장
 	@PostMapping("/add")
-	public void add(@RequestBody Map<String, String> param) {
-		BoardVO boardVO = new BoardVO();
-		boardVO.setContentName(param.get("CONTENT_NAME"));
-
+	public void add(@RequestBody BoardVO boardVO) {
 		boardService.add(boardVO);
 	}
 
 	// 수정
 	@PutMapping("/update/{CONTENT_ID}")
-	public void update(@PathVariable("CONTENT_ID") String contentId, @RequestBody Map<String, String> param) {
-		BoardVO boardVO = new BoardVO();
-		boardVO.setContentId(contentId);
-		boardVO.setContentName(param.get("CONTENT_NAME"));
-
+	public void update(@PathVariable("CONTENT_ID") String contentId, @RequestBody BoardVO boardVO) {
 		boardService.update(boardVO);
 	}
 
