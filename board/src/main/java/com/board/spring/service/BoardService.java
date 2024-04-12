@@ -11,6 +11,9 @@ import com.board.spring.mapper.BoardMapper;
 import com.board.spring.util.MaskingUtil;
 import com.board.spring.vo.BoardVO;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Transactional
 @Service
 public class BoardService {
@@ -21,8 +24,9 @@ public class BoardService {
 	private MailService mailService;	
 	
 	@Transactional(readOnly = true)
-	public List<Map<String, Object>> list(BoardVO boardVO) {
-		List<Map<String, Object>> List = boardMapper.list(boardVO);
+	public List<Map<String, Object>> list() {
+		log.debug("++++++++++++++++++++++++++++");
+		List<Map<String, Object>> List = boardMapper.list();
 		for (Map<String, Object> row : List) {
 			String maskingContents = (String) row.get("CONTENTS_NAME");
 			row.put("CONTENTS_NAME", MaskingUtil.nameMasking(maskingContents));

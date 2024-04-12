@@ -26,8 +26,8 @@ public class BoardController {
 	private BoardService boardService;
 	// 전체리스트 조회
 	@GetMapping("/list")
-	public List<Map<String, Object>> list(@RequestBody BoardVO boardVO) {
-		return boardService.list(boardVO);
+	public List<Map<String, Object>> list() {
+		return boardService.list();
 	}
 
 	// 개별리스트디테일 조회

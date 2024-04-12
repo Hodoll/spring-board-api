@@ -9,7 +9,7 @@ import com.board.spring.vo.BoardVO;
 
 @Mapper
 public interface BoardMapper {
-	List<Map<String, Object>> list(BoardVO boardVO);
+	List<Map<String, Object>> list();
 
 	List<Map<String, Object>> one(BoardVO boardVO);
 
