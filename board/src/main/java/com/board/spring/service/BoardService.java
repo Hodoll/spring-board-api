@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.board.spring.mapper.BoardMapper;
-import com.board.spring.util.MaskingUtil;
 import com.board.spring.vo.BoardVO;
 
 import lombok.extern.slf4j.Slf4j;
@@ -23,14 +22,30 @@ public class BoardService {
 	@Autowired
 	private MailService mailService;	
 	
+	@SuppressWarnings("unused")
 	@Transactional(readOnly = true)
 	public List<BoardVO> list() {
 		log.debug("++++++++++++++++++++++++++++");
 		List<BoardVO> List = boardMapper.list();
-		for (BoardVO row : List) {
-			String maskingContents = row.getContentName();
-			row.setContentName(MaskingUtil.nameMasking(maskingContents));
-		}
+		
+	   for (int i = 0; i < List.size(); i++) {      
+		   BoardVO dto = new BoardVO();
+	       String content = List.get(i).getContentName().toString();
+//	       String category = result.getCategory()[i].toString();
+//	       dto.setContent(content);
+//	       dto.setCategory(category);
+//	       dtos.add(dto);
+	    }
+//		for(BoardVO boardVO : List){
+//		    log.debug("1");
+//		}
+//		for(int i = 0; i < List.size(); i++) {
+//			List.forEach(i);
+//			System.out.println(List.get(i).getContentId());
+//			//log.debug(List.get(i).toString());
+////			BoardVO boardVO = new BoardVO();
+////			boardVO.setContentName(MaskingUtil.nameMasking(maskingContents));
+//		}
 		return List;
 	}
 	
