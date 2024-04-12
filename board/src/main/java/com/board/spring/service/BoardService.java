@@ -24,12 +24,12 @@ public class BoardService {
 	private MailService mailService;	
 	
 	@Transactional(readOnly = true)
-	public List<Map<String, Object>> list() {
+	public List<BoardVO> list() {
 		log.debug("++++++++++++++++++++++++++++");
-		List<Map<String, Object>> List = boardMapper.list();
-		for (Map<String, Object> row : List) {
-			String maskingContents = (String) row.get("CONTENTS_NAME");
-			row.put("CONTENTS_NAME", MaskingUtil.nameMasking(maskingContents));
+		List<BoardVO> List = boardMapper.list();
+		for (BoardVO row : List) {
+			String maskingContents = row.getContentName();
+			row.setContentName(MaskingUtil.nameMasking(maskingContents));
 		}
 		return List;
 	}

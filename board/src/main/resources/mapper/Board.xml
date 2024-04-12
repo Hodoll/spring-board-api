@@ -4,7 +4,7 @@
 
 <mapper namespace="com.board.spring.mapper.BoardMapper">
 
-<select id="list" parameterType="com.board.spring.vo.BoardVO" resultType="com.board.spring.vo.BoardVO">
+<select id="list" parameterType="com.board.spring.vo.BoardVO" resultType="hashMap">
 SELECT 
 	   CONTENT_ID
 	 , CONTENT_NAME
@@ -23,7 +23,7 @@ SELECT
   </choose>
 </select>
 
-<select id="one" parameterType="com.board.spring.vo.BoardVO" resultType="com.board.spring.vo.BoardVO">
+<select id="one" parameterType="com.board.spring.vo.BoardVO" resultType="hashMap">
 SELECT 
 	    CONTENT_ID
 	   ,CONTENT_NAME
